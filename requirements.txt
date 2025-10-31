@@ -1,4 +1,5 @@
-# Existing packages...
-pywin32; platform_system == "Windows" # For Windows printer access
-Pillow           # For image processing
-PyPDF2           # For PDF manipulation
+flask
+pillow
+pypdf2
+gunicorn
+pywin32; platform_system == "Windows"
