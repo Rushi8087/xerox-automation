@@ -1,5 +1,8 @@
-flask
-pillow
-pypdf2
+Flask
+Flask-Cors
+requests
+python-dotenv
+Pillow
+PyPDF2
 gunicorn
-pywin32; platform_system == "Windows"
+watchdog
