@@ -1,0 +1,31 @@
+{
+  "order_id": "ORD_91452D3C",
+  "session_id": "5F017A37FB96",
+  "user_id": "918087870051",
+  "timestamp": "2025-10-17T06:07:44.616612",
+  "files": [
+    {
+      "file_id": "FILE_1",
+      "file_url": "https://lookaside.fbsbx.com/whatsapp_business/attachments/?mid=3913923092201960&source=getMedia&ext=1760681590&hash=ARk6LDA7d1R3Z-eMaKL1Xjf4I6Oqw7g8yUK7ij31B7X_Mw",
+      "filename": "img_b2c88b33.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\img_b2c88b33.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1,
+      "processing_status": "completed"
+    }
+  ],
+  "total_price": 1.1,
+  "total_pages": 1,
+  "total_sheets": 1,
+  "payment_status": "pending",
+  "order_status": "confirmed",
+  "order_placed_at": "2025-10-17T06:08:18.192337"
+}

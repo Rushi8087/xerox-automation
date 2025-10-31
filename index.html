@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Shop - Order Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .pricing-info {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            background: #f8f9ff;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 30px;
+        }
+
+        .upload-area:hover {
+            background: #f0f2ff;
+            border-color: #764ba2;
+        }
+
+        .upload-area.dragover {
+            background: #e8ebff;
+            border-color: #764ba2;
+        }
+
+        .upload-icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-list {
+            margin-top: 20px;
+        }
+
+        .file-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .file-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #333;
+            flex: 1;
+        }
+
+        .file-pages {
+            color: #666;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .remove-btn {
+            background: #ff4757;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+        }
+
+        .remove-btn:hover {
+            background: #ff3838;
+            transform: scale(1.05);
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .option-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-group label {
+            font-size: 0.85em;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .option-group select,
+        .option-group input {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.2s;
+        }
+
+        .option-group select:focus,
+        .option-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .file-price {
+            background: #f8f9ff;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: right;
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .summary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            font-size: 1.1em;
+        }
+
+        .summary-total {
+            border-top: 2px solid rgba(255,255,255,0.3);
+            margin-top: 10px;
+            padding-top: 15px;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #10ac84;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0e9670;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 172, 132, 0.4);
+        }
+
+        .btn-secondary {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #ee5a52;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .order-success {
+            background: #10ac84;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            animation: slideIn 0.5s;
+        }
+
+        .order-id {
+            font-size: 1.3em;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .upi-link {
+            background: white;
+            color: #10ac84;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .upi-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 Print Shop</h1>
+            <p>Upload your documents and configure print settings</p>
+            <div class="pricing-info">
+                <div><strong>💰 Pricing (per sheet):</strong></div>
+                <div>B&W: ₹1.1/sheet | Color: ₹6/sheet</div>
+                <div style="margin-top: 8px; font-size: 0.85em;">
+                    Single-sided: 1 page = 1 sheet<br>
+                    Double-sided: 2 pages = 1 sheet
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📤</div>
+                <h3>Drop files here or click to upload</h3>
+                <p style="color: #666; margin-top: 10px;">
+                    Supports: PDF, Images, DOC, XLS, PPT
+                </p>
+                <input type="file" id="fileInput" class="file-input" multiple 
+                    accept=".pdf,.jpg,.jpeg,.png,.gif,.bmp,.webp,.tiff,.tif,.doc,.docx,.txt,.rtf,.odt,.xls,.xlsx,.csv,.ppt,.pptx">
+            </div>
+
+            <div id="fileList" class="file-list"></div>
+
+            <div id="summary" style="display: none;">
+                <div class="summary">
+                    <h3>📋 Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Total Pages:</span>
+                        <span id="totalPages">0</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Total Sheets:</span>
+                        <span id="totalSheets">0</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total Price:</span>
+                        <span id="totalPrice">₹0.00</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="placeOrderBtn">
+                        🛒 Place Order
+                    </button>
+                    <button class="btn btn-secondary" id="clearAllBtn">
+                        🗑️ Clear All
+                    </button>
+                </div>
+            </div>
+
+            <div id="orderSuccess" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration
+        const PRICING = {
+            sheet_bw: 1.1,
+            sheet_color: 6.0
+        };
+
+        const SUPPORTED_FORMATS = {
+            pdf: ['pdf'],
+            image: ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp', 'tiff', 'tif'],
+            document: ['doc', 'docx', 'txt', 'rtf', 'odt'],
+            spreadsheet: ['xls', 'xlsx', 'csv'],
+            presentation: ['ppt', 'pptx']
+        };
+
+        // State
+        let files = [];
+
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const summary = document.getElementById('summary');
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+        const clearAllBtn = document.getElementById('clearAllBtn');
+        const orderSuccess = document.getElementById('orderSuccess');
+
+        // Utility Functions
+        function getFileExtension(filename) {
+            return filename.toLowerCase().split('.').pop();
+        }
+
+        function isSupported(filename) {
+            const ext = getFileExtension(filename);
+            const allFormats = Object.values(SUPPORTED_FORMATS).flat();
+            return allFormats.includes(ext);
+        }
+
+        function estimatePages(file) {
+            const ext = getFileExtension(file.name);
+            if (ext === 'pdf') return 5; // Placeholder - actual PDF parsing would need external library
+            if (SUPPORTED_FORMATS.image.includes(ext)) return 1;
+            if (SUPPORTED_FORMATS.document.includes(ext)) {
+                return Math.max(1, Math.ceil(file.size / 50000));
+            }
+            return 1;
+        }
+
+        function calculatePrice(file) {
+            const pages = file.pages || 1;
+            const copies = file.copies || 1;
+            const sides = file.sides || 'double';
+            const color = file.color || false;
+
+            let sheetsPerCopy;
+            if (sides === 'single') {
+                sheetsPerCopy = pages;
+            } else {
+                sheetsPerCopy = Math.ceil(pages / 2);
+            }
+
+            const totalSheets = sheetsPerCopy * copies;
+            const rate = color ? PRICING.sheet_color : PRICING.sheet_bw;
+            const price = totalSheets * rate;
+
+            file.sheetsPerCopy = sheetsPerCopy;
+            file.totalSheets = totalSheets;
+
+            return price.toFixed(2);
+        }
+
+        function generateOrderId() {
+            return 'ORD_' + Math.random().toString(36).substr(2, 8).toUpperCase();
+        }
+
+        // File Handling
+        function handleFiles(fileArray) {
+            Array.from(fileArray).forEach(file => {
+                if (!isSupported(file.name)) {
+                    alert(`Unsupported file: ${file.name}`);
+                    return;
+                }
+
+                const fileId = 'FILE_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+                const fileObj = {
+                    id: fileId,
+                    file: file,
+                    name: file.name,
+                    pages: estimatePages(file),
+                    sides: 'double',
+                    color: false,
+                    copies: 1,
+                    price: 0
+                };
+
+                fileObj.price = calculatePrice(fileObj);
+                files.push(fileObj);
+            });
+
+            renderFiles();
+            updateSummary();
+        }
+
+        function renderFiles() {
+            if (files.length === 0) {
+                fileList.innerHTML = '<div class="empty-state">No files uploaded yet</div>';
+                summary.style.display = 'none';
+                return;
+            }
+
+            fileList.innerHTML = files.map(f => `
+                <div class="file-item" data-id="${f.id}">
+                    <div class="file-header">
+                        <div>
+                            <span class="file-name">📄 ${f.name}</span>
+                            <span class="file-pages">${f.pages} pages</span>
+                        </div>
+                        <button class="remove-btn" onclick="removeFile('${f.id}')">❌</button>
+                    </div>
+                    <div class="options-grid">
+                        <div class="option-group">
+                            <label>Print Mode</label>
+                            <select onchange="updateFileOption('${f.id}', 'sides', this.value)">
+                                <option value="double" ${f.sides === 'double' ? 'selected' : ''}>Double-sided</option>
+                                <option value="single" ${f.sides === 'single' ? 'selected' : ''}>Single-sided</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>Color</label>
+                            <select onchange="updateFileOption('${f.id}', 'color', this.value === 'true')">
+                                <option value="false" ${!f.color ? 'selected' : ''}>B&W</option>
+                                <option value="true" ${f.color ? 'selected' : ''}>Color</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label>Copies</label>
+                            <input type="number" min="1" max="100" value="${f.copies}" 
+                                onchange="updateFileOption('${f.id}', 'copies', parseInt(this.value))">
+                        </div>
+                    </div>
+                    <div class="file-price">
+                        ${f.totalSheets} sheets × ${f.copies} copies = ₹${f.price}
+                    </div>
+                </div>
+            `).join('');
+
+            summary.style.display = 'block';
+        }
+
+        window.updateFileOption = function(fileId, option, value) {
+            const file = files.find(f => f.id === fileId);
+            if (file) {
+                file[option] = value;
+                
+                // If color is selected, force single-sided
+                if (option === 'color' && value === true) {
+                    file.sides = 'single';
+                }
+                
+                file.price = calculatePrice(file);
+                renderFiles();
+                updateSummary();
+            }
+        };
+
+        window.removeFile = function(fileId) {
+            files = files.filter(f => f.id !== fileId);
+            renderFiles();
+            updateSummary();
+        };
+
+        function updateSummary() {
+            if (files.length === 0) return;
+
+            const totalPages = files.reduce((sum, f) => sum + f.pages, 0);
+            const totalSheets = files.reduce((sum, f) => sum + f.totalSheets, 0);
+            const totalPrice = files.reduce((sum, f) => sum + parseFloat(f.price), 0);
+
+            document.getElementById('totalPages').textContent = totalPages;
+            document.getElementById('totalSheets').textContent = totalSheets;
+            document.getElementById('totalPrice').textContent = `₹${totalPrice.toFixed(2)}`;
+        }
+
+        // Order Management
+        function placeOrder() {
+            if (files.length === 0) return;
+
+            const orderId = generateOrderId();
+            const totalPages = files.reduce((sum, f) => sum + f.pages, 0);
+            const totalSheets = files.reduce((sum, f) => sum + f.totalSheets, 0);
+            const totalPrice = files.reduce((sum, f) => sum + parseFloat(f.price), 0).toFixed(2);
+
+            const orderData = {
+                order_id: orderId,
+                timestamp: new Date().toISOString(),
+                files: files.map(f => ({
+                    filename: f.name,
+                    pages: f.pages,
+                    print_options: {
+                        sides: f.sides,
+                        color: f.color,
+                        copies: f.copies
+                    },
+                    sheets_required: f.sheetsPerCopy,
+                    total_sheets: f.totalSheets,
+                    price: parseFloat(f.price)
+                })),
+                total_pages: totalPages,
+                total_sheets: totalSheets,
+                total_price: parseFloat(totalPrice),
+                payment_status: 'pending'
+            };
+
+            // Save to localStorage
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.push(orderData);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // Download JSON
+            const blob = new Blob([JSON.stringify(orderData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${orderId}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            // Show success
+            const upiLink = `upi://pay?pa=abhijeetkuntewad2-1@oksbi&pn=PrintShop&am=${totalPrice}&cu=INR`;
+            
+            orderSuccess.innerHTML = `
+                <div class="order-success">
+                    <h2>✅ Order Placed Successfully!</h2>
+                    <div class="order-id">Order ID: ${orderId}</div>
+                    <p>Total Amount: ₹${totalPrice}</p>
+                    <p>Total Sheets: ${totalSheets}</p>
+                    <a href="${upiLink}" class="upi-link">💳 Pay via UPI</a>
+                    <p style="margin-top: 15px; font-size: 0.9em;">Order details downloaded as JSON</p>
+                </div>
+            `;
+            orderSuccess.style.display = 'block';
+
+            // Clear files
+            files = [];
+            renderFiles();
+            summary.style.display = 'none';
+
+            // Hide success after 10 seconds
+            setTimeout(() => {
+                orderSuccess.style.display = 'none';
+            }, 10000);
+        }
+
+        // Event Listeners
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+            fileInput.value = '';
+        });
+
+        placeOrderBtn.addEventListener('click', placeOrder);
+
+        clearAllBtn.addEventListener('click', () => {
+            if (confirm('Clear all files?')) {
+                files = [];
+                renderFiles();
+                updateSummary();
+            }
+        });
+
+        // Initialize
+        renderFiles();
+    </script>
+</body>
+</html>

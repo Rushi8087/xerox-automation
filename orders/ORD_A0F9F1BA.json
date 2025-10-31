@@ -1,0 +1,96 @@
+{
+  "order_id": "ORD_A0F9F1BA",
+  "session_id": "BB3429C0E975",
+  "user_id": "918087870051",
+  "timestamp": "2025-10-17T05:57:02.568249",
+  "files": [
+    {
+      "file_id": "FILE_1",
+      "file_type": "jpg",
+      "filename": "text_diff_color (0;00;05;13).jpg",
+      "local_path": "uploads\\text_diff_color (0;00;05;13).jpg",
+      "page_count": 1,
+      "price": 3.3,
+      "print_options": {
+        "color": false,
+        "copies": 3,
+        "sides": "double"
+      },
+      "processing_status": "pending",
+      "sheets_required": 1,
+      "total_sheets": 3
+    },
+    {
+      "file_id": "FILE_2",
+      "file_type": "pdf",
+      "filename": "test_print.pdf",
+      "local_path": "uploads\\test_print.pdf",
+      "page_count": 1,
+      "price": 4.4,
+      "print_options": {
+        "color": false,
+        "copies": 4,
+        "sides": "double"
+      },
+      "processing_status": "pending",
+      "sheets_required": 1,
+      "total_sheets": 4
+    },
+    {
+      "file_id": "FILE_3",
+      "file_url": "https://lookaside.fbsbx.com/whatsapp_business/attachments/?mid=819235823827481&source=getMedia&ext=1760681125&hash=ARmsulCOrdty4bBlB2FcJUImn-mIzS3wlhdKHb6NcF-Hzg",
+      "filename": "img_54abcb53.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\img_54abcb53.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1,
+      "processing_status": "pending"
+    },
+    {
+      "file_id": "FILE_4",
+      "file_url": "https://lookaside.fbsbx.com/whatsapp_business/attachments/?mid=1837303983814150&source=getMedia&ext=1760681125&hash=ARkgxS4sRltqoJnhPXra4sbx6vFN_0pDbna-j8HJm-eDYQ",
+      "filename": "img_6cee9b09.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\img_6cee9b09.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1,
+      "processing_status": "pending"
+    },
+    {
+      "file_id": "FILE_5",
+      "file_url": "https://lookaside.fbsbx.com/whatsapp_business/attachments/?mid=1728689174459982&source=getMedia&ext=1760681126&hash=ARluOY7HJgsLlu8IAw1zcyS1fiPTwjEUzWmdZYYoRLiRbw",
+      "filename": "img_34308878.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\img_34308878.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1,
+      "processing_status": "pending"
+    }
+  ],
+  "total_price": 11.0,
+  "total_pages": 5,
+  "total_sheets": 10,
+  "payment_status": "pending",
+  "order_status": "confirmed"
+}

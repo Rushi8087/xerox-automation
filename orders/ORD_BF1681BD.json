@@ -1,0 +1,46 @@
+{
+  "order_id": "ORD_BF1681BD",
+  "session_id": "8D8948941B15",
+  "user_id": "918767697843",
+  "timestamp": "2025-10-17T09:40:13.984464",
+  "files": [
+    {
+      "file_id": "FILE_1",
+      "file_type": "jpg",
+      "filename": "IMG-20251017-WA0004.jpg",
+      "local_path": "uploads\\IMG-20251017-WA0004.jpg",
+      "page_count": 1,
+      "print_options": {
+        "color": true,
+        "copies": 1,
+        "sides": "double"
+      },
+      "processing_status": "completed",
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 6.0
+    },
+    {
+      "file_id": "FILE_2",
+      "file_type": "png",
+      "filename": "8739395084.png",
+      "local_path": "uploads\\8739395084.png",
+      "page_count": 1,
+      "print_options": {
+        "color": false,
+        "copies": 3,
+        "sides": "double"
+      },
+      "processing_status": "completed",
+      "sheets_required": 1,
+      "total_sheets": 3,
+      "price": 3.3
+    }
+  ],
+  "total_price": 9.3,
+  "total_pages": 2,
+  "total_sheets": 4,
+  "payment_status": "pending",
+  "order_status": "confirmed",
+  "order_placed_at": "2025-10-17T09:40:44.882357"
+}

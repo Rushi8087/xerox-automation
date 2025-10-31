@@ -1,0 +1,30 @@
+{
+  "order_id": "ORD_C49E9396",
+  "session_id": "8AC93E6F9764",
+  "user_id": "918087870051",
+  "timestamp": "2025-10-20T04:57:29.838843",
+  "files": [
+    {
+      "file_id": "FILE_1",
+      "filename": "20241118_211050.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\20241118_211050.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "processing_status": "completed",
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1
+    }
+  ],
+  "total_price": 1.1,
+  "total_pages": 1,
+  "total_sheets": 1,
+  "payment_status": "pending",
+  "order_status": "confirmed",
+  "order_placed_at": "2025-10-20T04:58:04.976931"
+}

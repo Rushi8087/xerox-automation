@@ -1,0 +1,62 @@
+{
+  "order_id": "ORD_A8F35ADF",
+  "session_id": "CB0B6E211975",
+  "user_id": "918087870051",
+  "timestamp": "2025-10-17T06:13:48.122927",
+  "files": [
+    {
+      "file_id": "FILE_1",
+      "filename": "IMG-20251016-WA0011.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\IMG-20251016-WA0011.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "processing_status": "completed",
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1
+    },
+    {
+      "file_id": "FILE_2",
+      "filename": "IMG-20251016-WA0007.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\IMG-20251016-WA0007.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "processing_status": "completed",
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1
+    },
+    {
+      "file_id": "FILE_3",
+      "filename": "IMG-20251016-WA0006.jpg",
+      "file_type": "jpg",
+      "local_path": "uploads\\IMG-20251016-WA0006.jpg",
+      "print_options": {
+        "color": false,
+        "sides": "double",
+        "copies": 1
+      },
+      "page_count": 1,
+      "processing_status": "completed",
+      "sheets_required": 1,
+      "total_sheets": 1,
+      "price": 1.1
+    }
+  ],
+  "total_price": 3.3,
+  "total_pages": 3,
+  "total_sheets": 3,
+  "payment_status": "pending",
+  "order_status": "confirmed",
+  "order_placed_at": "2025-10-17T06:14:29.380094"
+}

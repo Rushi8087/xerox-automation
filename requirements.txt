@@ -1,0 +1,4 @@
+# Existing packages...
+pywin32          # For Windows printer access
+Pillow           # For image processing
+PyPDF2           # For PDF manipulation
